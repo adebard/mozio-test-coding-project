@@ -104,12 +104,14 @@ class TestServiceArea(TestCase):
         )
         service_area.save()
 
-        search_url = self.service_areas + '?lat=35&long=30' # Query strings for search via lat/long pair.
-        # This point must be contained in the previous service area created.
+        # Query strings for search via lat/long pair.
+        search_url = self.service_areas + '?lat=35&long=30'
+        # This point (35,30) must be contained in the previous service area created.
         response = self.client.get(search_url)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.json()), 1)
-        self.assertEqual(response.json()[0]['id'], service_area.id) # The result should contain the service area created.
+        # The result should contain the service area created.
+        self.assertEqual(response.json()[0]['id'], service_area.id)
 
     def test_service_areas_delete(self):
         self.assertEqual(ServiceArea.objects.count(), 0)

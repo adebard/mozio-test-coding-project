@@ -17,7 +17,8 @@ class ProviderViewSet(viewsets.ModelViewSet):
 class ServiceAreaViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows service areas to be created, viewed, or edited.
-    Also allows to search service areas given a latitude and longitude.
+    Also allows to search service areas given a latitude and longitude adding
+    lat and long as query strings.
     """
     serializer_class = ServiceAreaSerializer
 
