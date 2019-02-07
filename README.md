@@ -18,7 +18,7 @@
  - Provider update:
    - Endpoint: /providers/&lt;ID&gt;/
    - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/providers/1/
-   - Method: POST
+   - Method: PUT
    - Example payload:
      ```{
       "name": "Test",
@@ -28,6 +28,7 @@
       "currency": "USD"}
 
 #### Service Areas:
+*Note*: The polygon area accept WKT and GeoJSON as input
  - Service areas list:
    - Endpoint: /service-areas/
    - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/
@@ -43,7 +44,7 @@
  - Service area update:
    - Endpoint: /service-areas/&lt;ID&gt;/
    - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/1/
-   - Method: POST
+   - Method: PUT
    - Example payload:
      ```{
      "provider_name": "Test",
