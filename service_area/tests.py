@@ -44,6 +44,22 @@ class TestProviders(TestCase):
 
         self.assertEqual(Provider.objects.count(), 0)
 
+    def test_provider_update(self):
+        self.assertEqual(Provider.objects.count(), 0)
+
+        # NOTE: this can be improved using factoryboy.
+        provider = Provider(name="Test", email="test@mail.com",
+                           phone_number="1234")
+        provider.save()
+
+        self.assertEqual(Provider.objects.count(), 1)
+
+        object_detail_url = reverse('provider-detail', args=[provider.id])
+        new_name = 'Updated'
+        response = self.client.put(object_detail_url, data=json.dumps({'name': new_name}))
+
+        self.assertEqual(response.json()[0]['name'], new_name)
+
 
 class TestServiceArea(TestCase):
     def setUp(self):
