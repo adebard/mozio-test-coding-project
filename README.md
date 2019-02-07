@@ -11,6 +11,10 @@
    - Endpoint: /providers/&lt;ID&gt;/
    - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/providers/1/
    - Method: GET
+ - Provider delete:
+   - Endpoint: /providers/&lt;ID&gt;/
+   - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/providers/1/
+   - Method: DELETE
  - Provider update:
    - Endpoint: /providers/&lt;ID&gt;/
    - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/providers/1/
@@ -32,6 +36,10 @@
    - Endpoint: /service-areas/&lt;ID&gt;/
    - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/1/
    - Method: GET
+ - Service area delte:
+   - Endpoint: /service-areas/&lt;ID&gt;/
+   - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/1/
+   - Method: DELETE
  - Service area update:
    - Endpoint: /service-areas/&lt;ID&gt;/
    - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/1/
