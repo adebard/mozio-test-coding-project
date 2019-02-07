@@ -9,7 +9,7 @@
    - Method: GET
  - Provider detail:
    - Endpoint: /providers/&lt;ID&gt;/
-   - Example URL:
+   - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/providers/1/
    - Method: GET
  - Provider update:
    - Endpoint: /providers/&lt;ID&gt;/
@@ -31,7 +31,6 @@
  - Service area detail:
    - Endpoint: /service-areas/&lt;ID&gt;/
    - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/1/
-   - Example:
    - Method: GET
  - Service area update:
    - Endpoint: /service-areas/&lt;ID&gt;/
@@ -68,7 +67,7 @@
      "provider": 1
      }
      ```
-- Search service area given lat/lng pair:
+- Search service area given lat/long pair:
    - Endpoint: /service-areas/?lat=&lt;LAT&gt;&long=&lt;LONG&gt;
    - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/?lat=1.323423&long=1.2323123
    - Method: GET
