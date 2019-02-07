@@ -4,6 +4,8 @@ from django.test import TestCase
 from django.urls import reverse
 from django.contrib.gis.geos import Polygon
 
+from rest_framework import status
+
 from service_area.models import Provider, ServiceArea
 
 
@@ -13,7 +15,7 @@ class TestProviders(TestCase):
 
     def test_get_providers(self):
         response = self.client.get(self.providers_url)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_post_providers(self):
         self.assertEqual(Provider.objects.count(), 0)
@@ -26,7 +28,7 @@ class TestProviders(TestCase):
         }
         response = self.client.post(self.providers_url, data=json.dumps(data),
                                     content_type='application/json')
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Provider.objects.count(), 1)
 
     def test_provider_delete(self):
@@ -39,9 +41,10 @@ class TestProviders(TestCase):
 
         self.assertEqual(Provider.objects.count(), 1)
 
-        object_detail_url = reverse('provider-detail', args=[provider.id])
-        response = self.client.delete(object_detail_url)
+        object_url = reverse('provider-detail', args=[provider.id])
+        response = self.client.delete(object_url)
 
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Provider.objects.count(), 0)
 
 
@@ -56,7 +59,7 @@ class TestServiceArea(TestCase):
 
     def test_get_service_areas(self):
         response = self.client.get(self.service_areas)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_post_service_areas_with_geojson_data(self):
         self.assertEqual(ServiceArea.objects.count(), 0)
@@ -78,7 +81,7 @@ class TestServiceArea(TestCase):
         }
         response = self.client.post(self.service_areas, data=json.dumps(data),
                                     content_type='application/json')
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(ServiceArea.objects.count(), 1)
 
     def test_post_service_areas_with_wkt_data(self):
@@ -91,7 +94,7 @@ class TestServiceArea(TestCase):
         }
         response = self.client.post(self.service_areas, data=json.dumps(data),
                                     content_type='application/json')
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(ServiceArea.objects.count(), 1)
 
     def test_search_service_areas_given_lat_long_pair(self):
@@ -108,7 +111,7 @@ class TestServiceArea(TestCase):
         search_url = self.service_areas + '?lat=35&long=30'
         # This point (35,30) must be contained in the previous service area created.
         response = self.client.get(search_url)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.json()), 1)
         # The result should contain the service area created.
         self.assertEqual(response.json()[0]['id'], service_area.id)
@@ -127,7 +130,8 @@ class TestServiceArea(TestCase):
 
         self.assertEqual(ServiceArea.objects.count(), 1)
 
-        object_detail_url = reverse('service-area-detail', args=[service_area.id])
-        response = self.client.delete(object_detail_url)
+        object_url = reverse('service-area-detail', args=[service_area.id])
+        response = self.client.delete(object_url)
 
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(ServiceArea.objects.count(), 0)
