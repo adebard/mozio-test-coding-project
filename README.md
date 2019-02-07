@@ -78,7 +78,7 @@
      ```
 - Search service area given lat/long pair:
    - Endpoint: /service-areas/?lat=&lt;LAT&gt;&long=&lt;LONG&gt;
-   - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/?lat=1.323423&long=1.2323123
+   - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/?lat=35&long=30
    - Method: GET
    
    
