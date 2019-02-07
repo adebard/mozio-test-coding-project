@@ -5,7 +5,7 @@
 #### Providers:
  - Provider list:
    - Endpoint: /providers/
-   - Example URL:
+   - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/providers/
    - Method: GET
  - Provider detail:
    - Endpoint: /providers/&lt;id&gt;/
@@ -13,7 +13,7 @@
    - Method: GET
  - Provider update:
    - Endpoint: /providers/&lt;id&gt;/
-   - Example URL:
+   - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/providers/1/
    - Method: POST
    - Example payload:
      ```{
@@ -26,16 +26,16 @@
 #### Service Areas:
  - Service areas list:
    - Endpoint: /service-areas/
-   - Example URL:
+   - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/
    - Method: GET
  - Service area detail:
    - Endpoint: /service-areas/&lt;id&gt;/
-   - Example URL:
+   - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/1/
    - Example:
    - Method: GET
  - Service area update:
    - Endpoint: /service-areas/&lt;id&gt;/
-   - Example URL:
+   - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/1/
    - Method: POST
    - Example payload:
      ```{
@@ -70,5 +70,13 @@
      ```
 - Search service area:
    - Endpoint: /service-areas/?lat=&lt;lat&gt;&long=&lt;long&gt;
-   - Example URL:
+   - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/?lat=1.323423&long=1.2323123
    - Method: GET
+   
+   
+### Infrastructure and details:
+  - AWS EC2
+  - PostgreSQL (PostGIS)
+  - Nginx
+  - Gunicorn
+
