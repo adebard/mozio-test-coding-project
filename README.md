@@ -68,7 +68,7 @@
      "provider": 1
      }
      ```
-- Search service area:
+- Search service area given lat/lng pair:
    - Endpoint: /service-areas/?lat=&lt;lat&gt;&long=&lt;long&gt;
    - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/?lat=1.323423&long=1.2323123
    - Method: GET
@@ -79,4 +79,6 @@
   - PostgreSQL (PostGIS)
   - Nginx
   - Gunicorn
-
+  
+### Tests:
+```python manage.py test```
