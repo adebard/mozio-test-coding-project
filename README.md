@@ -1,4 +1,4 @@
-# Mozio
+# Mozio test coding project.
 
 ### API documentation:
 
