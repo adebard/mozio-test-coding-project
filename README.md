@@ -213,7 +213,7 @@
    - Endpoint: /service-areas/?lat=&lt;LAT&gt;&long=&lt;LONG&gt;
    - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/?lat=35&long=30
    - Method: GET
-   - Success 201
+   - Success 200
    - Example response:
    ```
    [
