@@ -36,7 +36,7 @@
    - Endpoint: /service-areas/&lt;ID&gt;/
    - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/1/
    - Method: GET
- - Service area delte:
+ - Service area delete:
    - Endpoint: /service-areas/&lt;ID&gt;/
    - Example URL: http://ec2-54-210-228-174.compute-1.amazonaws.com/service-areas/1/
    - Method: DELETE
