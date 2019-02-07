@@ -2,8 +2,9 @@ import json
 
 from django.test import TestCase
 from django.urls import reverse
+from django.contrib.gis.geos import Polygon
 
-from service_area.models import Provider,ServiceArea
+from service_area.models import Provider, ServiceArea
 
 
 class TestProviders(TestCase):
@@ -42,7 +43,7 @@ class TestServiceArea(TestCase):
         response = self.client.get(self.service_areas)
         self.assertEqual(response.status_code, 200)
 
-    def test_post_service_areas(self):
+    def test_post_service_areas_with_geojson_data(self):
         self.assertEqual(ServiceArea.objects.count(), 0)
         data = {
             "name": "Area for test",
@@ -64,3 +65,31 @@ class TestServiceArea(TestCase):
                                     content_type='application/json')
         self.assertEqual(response.status_code, 201)
         self.assertEqual(ServiceArea.objects.count(), 1)
+
+    def test_post_service_areas_with_wkt_data(self):
+        self.assertEqual(ServiceArea.objects.count(), 0)
+        data = {
+            "name": "Area for test",
+            "price": "25",
+            "area": "POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))",
+            "provider": self.provider.id
+        }
+        response = self.client.post(self.service_areas, data=json.dumps(data),
+                                    content_type='application/json')
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(ServiceArea.objects.count(), 1)
+
+    def test_search_service_areas_given_lat_long_pair(self):
+        # NOTE: this can be improved using factoryboy.
+        service_area = ServiceArea(
+            name="Test",
+            price="10",
+            provider=self.provider,
+            area=Polygon(((30.0, 10.0), (40.0, 40.0), (20.0, 40.0), (10.0, 20.0), (30.0, 10.0)))
+        )
+        service_area.save()
+
+        search_url = self.service_areas + '?lat=35&long=30'
+        response = self.client.get(search_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.json()), 1)
