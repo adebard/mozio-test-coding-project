@@ -8,11 +8,11 @@
    - Example URL:
    - Method: GET
  - Provider detail:
-   - Endpoint: /providers/<id>/
+   - Endpoint: /providers/&lt;id&gt;/
    - Example URL:
    - Method: GET
  - Provider update:
-   - Endpoint: /providers/<id>/
+   - Endpoint: /providers/&lt;id&gt;/
    - Example URL:
    - Method: POST
    - Example payload:
@@ -29,17 +29,16 @@
    - Example URL:
    - Method: GET
  - Service area detail:
-   - Endpoint: /service-areas/<id>/
+   - Endpoint: /service-areas/&lt;id&gt;/
    - Example URL:
    - Example:
    - Method: GET
  - Service area update:
-   - Endpoint: /service-areas/<id>/
+   - Endpoint: /service-areas/&lt;id&gt;/
    - Example URL:
    - Method: POST
    - Example payload:
      ```{
-     "id": 2,
      "provider_name": "Test",
      "name": "Area for test",
      "price": "25.00",
@@ -70,6 +69,6 @@
      }
      ```
 - Search service area:
-   - Endpoint: /service-areas/?lat=<lat>&long=<long>
+   - Endpoint: /service-areas/?lat=&lt;lat&gt;&long=&lt;long&gt;
    - Example URL:
    - Method: GET
