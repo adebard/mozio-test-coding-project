@@ -29,6 +29,21 @@ class TestProviders(TestCase):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(Provider.objects.count(), 1)
 
+    def test_provider_delete(self):
+        self.assertEqual(Provider.objects.count(), 0)
+
+        # NOTE: this can be improved using factoryboy.
+        provider = Provider(name="Test", email="test@mail.com",
+                           phone_number="1234")
+        provider.save()
+
+        self.assertEqual(Provider.objects.count(), 1)
+
+        object_detail_url = reverse('provider-detail', args=[provider.id])
+        response = self.client.delete(object_detail_url)
+
+        self.assertEqual(Provider.objects.count(), 0)
+
 
 class TestServiceArea(TestCase):
     def setUp(self):
@@ -89,7 +104,28 @@ class TestServiceArea(TestCase):
         )
         service_area.save()
 
-        search_url = self.service_areas + '?lat=35&long=30'
+        search_url = self.service_areas + '?lat=35&long=30' # Query strings for search via lat/long pair.
+        # This point must be contained in the previous service area created.
         response = self.client.get(search_url)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.json()), 1)
+        self.assertEqual(response.json()[0]['id'], service_area.id) # The result should contain the service area created.
+
+    def test_service_areas_delete(self):
+        self.assertEqual(ServiceArea.objects.count(), 0)
+
+        # NOTE: this can be improved using factoryboy.
+        service_area = ServiceArea(
+            name="Test",
+            price="10",
+            provider=self.provider,
+            area=Polygon(((30.0, 10.0), (40.0, 40.0), (20.0, 40.0), (10.0, 20.0), (30.0, 10.0)))
+        )
+        service_area.save()
+
+        self.assertEqual(ServiceArea.objects.count(), 1)
+
+        object_detail_url = reverse('service-area-detail', args=[service_area.id])
+        response = self.client.delete(object_detail_url)
+
+        self.assertEqual(ServiceArea.objects.count(), 0)
